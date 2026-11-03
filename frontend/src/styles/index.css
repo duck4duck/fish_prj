@@ -1,0 +1,346 @@
+:root {
+  /* Design Tokens from Screenshot */
+  --bg-deep: #140E13;
+  --bg-surface: #1B1218;
+  --bg-card: #261B23;
+  --bg-card-hover: #32222E;
+  --bg-pill: #2C1D28;
+  --bg-pill-active: #482F42;
+  
+  --accent-rose: #E53974;
+  --accent-rose-hover: #F24A84;
+  --accent-rose-glow: rgba(229, 57, 116, 0.45);
+  --accent-rose-subtle: rgba(229, 57, 116, 0.12);
+  --accent-gold: #FFB800;
+  
+  --text-primary: #FFFFFF;
+  --text-secondary: #C4B5BE;
+  --text-dim: #8A7B84;
+  
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-card: rgba(255, 255, 255, 0.09);
+  --border-accent: rgba(229, 57, 116, 0.35);
+
+  --radius-card: 28px;
+  --radius-pill: 24px;
+  --radius-badge: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #160F14;
+}
+::-webkit-scrollbar-thumb {
+  background: #3B2636;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-rose);
+}
+
+/* Animated Ambient Glow Mesh */
+.bg-ambient-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(circle at 15% 15%, rgba(229, 57, 116, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(184, 51, 106, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(250, 130, 76, 0.05) 0%, transparent 50%);
+  animation: ambientDrift 20s ease-in-out infinite alternate;
+}
+
+@keyframes ambientDrift {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    transform: scale(1.08) translateY(-25px);
+  }
+}
+
+/* Floating Pink / Rose Bioluminescent Bubbles */
+.rose-bubble {
+  position: fixed;
+  bottom: -60px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.85), rgba(229, 57, 116, 0.4) 60%, rgba(229, 57, 116, 0.05) 100%);
+  box-shadow: 0 0 16px rgba(229, 57, 116, 0.35), inset 0 0 6px rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  animation: floatRoseBubble linear infinite;
+  z-index: 0;
+}
+
+@keyframes floatRoseBubble {
+  0% {
+    transform: translateY(0) translateX(0) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(-55vh) translateX(25px) scale(1);
+    opacity: 0.75;
+  }
+  85% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(-20px) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* Hero Fish Swimming Float */
+@keyframes floatFishGently {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(-1.5deg);
+  }
+}
+
+.hero-floating-fish {
+  animation: floatFishGently 5s ease-in-out infinite;
+}
+
+/* General Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(229, 57, 116, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(229, 57, 116, 0.6);
+  }
+}
+
+@keyframes slowRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.card-luxury {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease, background-color 0.28s ease;
+}
+
+.card-luxury:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.65), 0 0 28px rgba(229, 57, 116, 0.25);
+  border-color: rgba(229, 57, 116, 0.45);
+  background-color: #2D1E29;
+}
+
+/* =======================================================
+   INTERACTIVE HOVER COLOR TRANSITIONS (BUY BUTTONS & CTAS)
+   ======================================================= */
+
+/* 1. Circular Buy/Cart Button on Fish Cards */
+.buy-button-interactive {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.buy-button-interactive:hover {
+  background: linear-gradient(135deg, #FF1475 0%, #D81B60 100%) !important;
+  border-color: #FFA6C9 !important;
+  transform: scale(1.18) !important;
+  box-shadow: 0 0 26px rgba(255, 20, 117, 0.85), 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+.buy-button-interactive:active {
+  transform: scale(0.95) !important;
+}
+
+/* 2. Main Glowing Buy / Place Order Button (Modal & Cart Drawer) */
+.main-cta-button {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.main-cta-button:hover {
+  background: linear-gradient(135deg, #FF2E79 0%, #9B26D4 100%) !important;
+  transform: translateY(-2px) scale(1.025) !important;
+  box-shadow: 0 10px 36px rgba(255, 46, 121, 0.85), 0 0 24px rgba(155, 38, 212, 0.6) !important;
+  border-color: #FF85B2 !important;
+}
+
+.main-cta-button:active {
+  transform: translateY(1px) scale(0.98) !important;
+}
+
+/* 3. Hero CTA Explore Button */
+.explore-cta-button {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.explore-cta-button:hover {
+  background: linear-gradient(135deg, #FF2E79 0%, #F50057 100%) !important;
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 12px 34px rgba(255, 46, 121, 0.8), 0 0 20px rgba(255, 46, 121, 0.5) !important;
+}
+
+.explore-cta-button:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+/* 4. Hero Secondary Compatibility Button */
+.secondary-cta-button {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.secondary-cta-button:hover {
+  background: rgba(229, 57, 116, 0.24) !important;
+  border-color: #FF2E79 !important;
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 0 22px rgba(229, 57, 116, 0.45) !important;
+}
+
+/* 5. Fish Card Arrow Details Button */
+.arrow-btn-interactive {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.arrow-btn-interactive:hover {
+  background-color: #FF2E79 !important;
+  transform: scale(1.15) !important;
+  box-shadow: 0 0 16px rgba(255, 46, 121, 0.75) !important;
+}
+
+/* 6. Scanner Chip Interactive (+ Compatibility) */
+.scanner-btn-interactive {
+  transition: all 0.22s ease !important;
+  cursor: pointer !important;
+}
+
+.scanner-btn-interactive:hover {
+  border-color: rgba(229, 57, 116, 0.85) !important;
+  background-color: rgba(229, 57, 116, 0.24) !important;
+  transform: scale(1.06) !important;
+  box-shadow: 0 0 14px rgba(229, 57, 116, 0.4) !important;
+}
+
+/* 7. Header Cart Circular Button */
+.cart-circle-interactive {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+.cart-circle-interactive:hover {
+  background: linear-gradient(135deg, #FF2E79 0%, #D81B60 100%) !important;
+  transform: scale(1.14) !important;
+  box-shadow: 0 0 25px rgba(255, 46, 121, 0.85) !important;
+}
+
+/* 8. Filter Category Pills */
+.category-pill-interactive {
+  transition: all 0.22s ease !important;
+  cursor: pointer !important;
+}
+
+.category-pill-interactive:hover {
+  background-color: #3C2234 !important;
+  border-color: rgba(229, 57, 116, 0.5) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 9. Segment Tabs */
+.segment-btn-interactive {
+  transition: all 0.2s ease !important;
+}
+
+.segment-btn-interactive:hover {
+  background-color: rgba(229, 57, 116, 0.2) !important;
+  color: #FFFFFF !important;
+}
+
+.btn-glow-pulse {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.btn-hover-scale {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.btn-hover-scale:hover {
+  transform: scale(1.03);
+}
+
+.btn-hover-scale:active {
+  transform: scale(0.97);
+}
+
+.pill-hover {
+  transition: all 0.2s ease;
+}
+
+.pill-hover:hover {
+  background-color: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.18);
+}
